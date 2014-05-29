@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "crxde-pipe",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "bin": {
+    "crxde-pipe": "./bin/crxde-pipe"
+  },
+  "dependencies": {
+    "commander": "^2.2.0",
+    "debug": "^0.8.1",
+    "form-data": "^0.1.2",
+    "watchr": "^2.4.11"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.4"
+  }
+}

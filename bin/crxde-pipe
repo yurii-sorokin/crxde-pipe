@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var pkg = require('../package.json');
+var crxdePipe = require('../');
+
+var paths = [ process.cwd() ];
+var options = {};
+
+program
+  .version(pkg.version)
+  .usage('[options] [dir]')
+  .option('-m, --match [regex]', 'Regex for matching CQ path')
+  .option('-i, --ignore [regex]', 'Regex for excluding files from watching')
+  .option('-I, --interval [ms]', 'Interval of watching')
+  .parse(process.argv);
+
+if (program.args.length) {
+  paths = program.args;
+}
+
+if (program.match) {
+  options.macth = new RegExp(program.match);
+}
+
+if (program.ignore) {
+  options.ignore = new RegExp(program.ignore);
+}
+
+options.interval = program.interval;
+
+crxdePipe.pipe(paths, options);
