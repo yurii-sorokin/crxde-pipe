@@ -10,7 +10,12 @@
     "commander": "^2.2.0",
     "debug": "^0.8.1",
     "form-data": "^0.1.2",
-    "watchr": "^2.4.11"
+    "watchr": "^2.4.11",
+    "underscore":"1.6.0",
+    "node-sass": "0.9.3",
+    "stylus": "0.47.3",
+    "less": "1.7.4"
+
   },
   "devDependencies": {
     "grunt-contrib-watch": "~0.5.3",
