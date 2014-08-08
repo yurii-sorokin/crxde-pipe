@@ -6,13 +6,18 @@ var crxdePipe = require('../');
 
 var paths = [ process.cwd() ];
 var options = {};
+var serverMatcher = /^(.*)\:(\d+)$/;
+var parsedServer;
 
 program
   .version(pkg.version)
   .usage('[options] [dir]')
-  .option('-m, --match [regex]', 'Regex for matching CQ path')
-  .option('-i, --ignore [regex]', 'Regex for excluding files from watching')
-  .option('-I, --interval [ms]', 'Interval of watching')
+  .option('-m, --match [regex]',      'Regex for matching CQ path')
+  .option('-i, --ignore [regex]',     'Regex for excluding files from watching')
+  .option('-I, --interval [ms]',      'Interval of watching')
+  .option('-p, --preprocessor',       'Enable preprocessor')
+  .option('-s, --server [host:port]', 'Change host and port')
+  .option('-a, --auth [admin:admin]', 'Login and password')
   .parse(process.argv);
 
 if (program.args.length) {
@@ -25,6 +30,27 @@ if (program.match) {
 
 if (program.ignore) {
   options.ignore = new RegExp(program.ignore);
+}
+
+if (program.preprocessor) {
+  options.preprocessor = program.preprocessor;
+}
+
+if (program.server) {
+  parsedServer = program.server.match(serverMatcher);
+
+  options.server = options.server || {};
+
+  if (parsedServer[1] && parsedServer[2]) {
+    options.server.host = parsedServer[1];
+    options.server.port = parsedServer[2];
+  } else {
+    console.error('You set error server string');
+  }
+}
+
+if (program.auth) {
+  options.auth = program.auth;
 }
 
 options.interval = program.interval;
