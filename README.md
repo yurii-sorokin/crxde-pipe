@@ -22,7 +22,7 @@ Also you can specify debugging target:
 ```bash
 DEBUG=app:error crxde-pipe path/to/project/src
 ```
-_For more information see [docs](docs/README.md) and [debug](https://github.com/visionmedia/debug) project_
+_For more information see [docs](#module_logger) and [debug](https://github.com/visionmedia/debug) project_
 
 Options:
 ```bash
@@ -92,23 +92,23 @@ Expose logging targets
 
 <a name="module_logger.log"></a>
 ####logger.log
-Target for base logging
+`app:log` Target for base logging
 
 <a name="module_logger.error"></a>
 ####logger.error
-Target for logging errors
+`app:error` Target for logging errors
 
 <a name="module_logger.update"></a>
 ####logger.update
-Target for logging updates of file on CQ (CRXDE)
+`crxde:update` Target for logging updates of file on CQ (CRXDE)
 
 <a name="module_logger.create"></a>
 ####logger.create
-Target for logging uploads of file to CQ (CRXDE)
+`crxde:create` Target for logging uploads of file to CQ (CRXDE)
 
 <a name="module_logger.remove"></a>
 ####logger.remove
-Target for logging removal of file from CQ (CRXDE)
+`crxde:remove` Target for logging removal of file from CQ (CRXDE)
 
 <a name="CRXDE"></a>
 ###class: CRXDE
