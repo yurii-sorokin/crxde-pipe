@@ -7,26 +7,32 @@ var crxdePipe = require('../');
 var paths = [ process.cwd() ];
 var options = {};
 
+var parseRegex = function(str) {
+  return new RegExp(str);
+};
+
 program
+  .description('Pipes source code to CQ (CRXDE)')
   .version(pkg.version)
-  .usage('[options] [dir]')
-  .option('-m, --match [regex]', 'Regex for matching CQ path')
-  .option('-i, --ignore [regex]', 'Regex for excluding files from watching')
-  .option('-I, --interval [ms]', 'Interval of watching')
+  .usage('[options] <dir...>')
+  .option('-m, --match [regex]', 'Regex for matching CQ path', parseRegex)
+  .option('-i, --ignore [regex]', 'Regex for excluding files from watching', parseRegex)
+  .option('-I, --interval [ms]', 'Interval of watching', parseInt)
+  .option('-H, --host [name]', 'CQ (CRXDE) host')
+  .option('-p, --port [number]', 'CQ (CRXDE) port', parseInt)
   .parse(process.argv);
 
 if (program.args.length) {
   paths = program.args;
 }
 
-if (program.match) {
-  options.macth = new RegExp(program.match);
-}
-
-if (program.ignore) {
-  options.ignore = new RegExp(program.ignore);
-}
-
-options.interval = program.interval;
+program.options.forEach(function(option) {
+  var key = option.name();
+  var val = program[key];
+  console.log('key',key);
+  if (val != null && key !== 'version') {
+    options[key] = program[key];
+  }
+});
 
 crxdePipe.pipe(paths, options);

@@ -1,0 +1,47 @@
+# crxde-pipe
+
+## CLI
+
+Install `crxde-pipe` from sources:
+```sh
+$ git clone https://github.com/fortywinkz/crxde-pipe.git
+$ npm install
+$ nmp link
+```
+
+Run:
+```bash
+crxde-pipe path/to/project/src
+```
+
+Enable debugging:
+```bash
+DEBUG=* crxde-pipe path/to/project/src
+```
+Also you can specify debugging target:
+```bash
+DEBUG=app:error crxde-pipe path/to/project/src
+```
+_For more information see [docs](docs/README.md) and [debug](https://github.com/visionmedia/debug) project_
+
+Options:
+```bash
+crxde-pipe -h                                                                                             [15:54:04]
+
+Usage: crxde-pipe [options] [dir]
+
+Options:
+
+-h, --help            output usage information
+-V, --version         output the version number
+-m, --match [regex]   Regex for matching CQ path
+-i, --ignore [regex]  Regex for excluding files from watching
+-I, --interval [ms]   Interval of watching
+```
+
+## API
+
+{{heading-depth-set 2 ~}}
+{{>main~}}
+
+*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
