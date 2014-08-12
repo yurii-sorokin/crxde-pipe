@@ -18,8 +18,9 @@ program
   .option('-m, --match [regex]', 'Regex for matching CQ path', parseRegex)
   .option('-i, --ignore [regex]', 'Regex for excluding files from watching', parseRegex)
   .option('-I, --interval [ms]', 'Interval of watching', parseInt)
-  .option('-H, --host [name]', 'CQ (CRXDE) host')
+  .option('-s, --host [name]', 'CQ (CRXDE) host')
   .option('-p, --port [number]', 'CQ (CRXDE) port', parseInt)
+  .option('-P, --preprocess', 'Enables preprocessors')
   .parse(process.argv);
 
 if (program.args.length) {
@@ -29,7 +30,7 @@ if (program.args.length) {
 program.options.forEach(function(option) {
   var key = option.name();
   var val = program[key];
-  console.log('key',key);
+
   if (val != null && key !== 'version') {
     options[key] = program[key];
   }
