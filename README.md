@@ -5,6 +5,7 @@
 Install `crxde-pipe` from sources:
 ```sh
 $ git clone https://github.com/fortywinkz/crxde-pipe.git
+$ cd crxde-pipe
 $ npm install
 $ nmp link
 ```
@@ -54,7 +55,9 @@ Options:
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
   * [logger.remove](#module_logger.remove)
-* [preprocCss](#module_preprocCss)
+* [preproc](#module_preproc)
+  * [preproc.isFileCanBePreproc](#module_preproc.isFileCanBePreproc)
+  * [preproc.preproc](#module_preproc.preproc)
 
 **Classes**
 
@@ -65,11 +68,6 @@ Options:
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
-
-**Functions**
-
-* [isFileCanBePreproc(path)](#isFileCanBePreproc)
-* [cssPreproc(path)](#cssPreproc)
  
 <a name="module_crxde-pipe"></a>
 ###crxde-pipe
@@ -123,9 +121,32 @@ Expose logging targets
 ####logger.remove
 `crxde:remove` Target for logging removal of file from CQ (CRXDE)
 
-<a name="module_preprocCss"></a>
-###preprocCss
+<a name="module_preproc"></a>
+###preproc
 Expose preprocessing functions
+
+**Members**
+
+* [preproc](#module_preproc)
+  * [preproc.isFileCanBePreproc](#module_preproc.isFileCanBePreproc)
+  * [preproc.preproc](#module_preproc.preproc)
+
+<a name="module_preproc.isFileCanBePreproc"></a>
+####preproc.isFileCanBePreproc
+Checks if file could be preprocessed
+
+**Params**
+
+- path `string` - Path to file in file system  
+
+**Returns**: `boolean`  
+<a name="module_preproc.preproc"></a>
+####preproc.preproc
+Runs preprocessing
+
+**Params**
+
+- path `string` - Path to file in file system  
 
 <a name="CRXDE"></a>
 ###class: CRXDE
@@ -200,21 +221,4 @@ Removes a file from CQ (CRXDE)
 - path `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
-<a name="isFileCanBePreproc"></a>
-###isFileCanBePreproc(path)
-Checks if file could be preprocessed
-
-**Params**
-
-- path `string` - Path to file in file system  
-
-**Returns**: `boolean`  
-<a name="cssPreproc"></a>
-###cssPreproc(path)
-Runs preprocessing
-
-**Params**
-
-- path `string` - Path to file in file system  
-
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
