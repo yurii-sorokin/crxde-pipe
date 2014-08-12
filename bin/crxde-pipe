@@ -30,7 +30,7 @@ if (program.args.length) {
 program.options.forEach(function(option) {
   var key = option.name();
   var val = program[key];
-  console.log('key',key);
+
   if (val != null && key !== 'version') {
     options[key] = program[key];
   }

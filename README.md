@@ -50,18 +50,26 @@ Options:
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
   * [logger.error](#module_logger.error)
+  * [logger.preproc](#module_logger.preproc)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
   * [logger.remove](#module_logger.remove)
+* [preprocCss](#module_preprocCss)
 
 **Classes**
 
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
   * [cRXDE.pipe(paths, [options])](#CRXDE#pipe)
+  * [cRXDE.preproc(path)](#CRXDE#preproc)
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
+
+**Functions**
+
+* [isFileCanBePreproc(path)](#isFileCanBePreproc)
+* [cssPreproc(path)](#cssPreproc)
  
 <a name="module_crxde-pipe"></a>
 ###crxde-pipe
@@ -86,6 +94,7 @@ Expose logging targets
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
   * [logger.error](#module_logger.error)
+  * [logger.preproc](#module_logger.preproc)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
   * [logger.remove](#module_logger.remove)
@@ -97,6 +106,10 @@ Expose logging targets
 <a name="module_logger.error"></a>
 ####logger.error
 `app:error` Target for logging errors
+
+<a name="module_logger.preproc"></a>
+####logger.preproc
+`app:preproc` Target for logging preprocessing
 
 <a name="module_logger.update"></a>
 ####logger.update
@@ -110,6 +123,10 @@ Expose logging targets
 ####logger.remove
 `crxde:remove` Target for logging removal of file from CQ (CRXDE)
 
+<a name="module_preprocCss"></a>
+###preprocCss
+Expose preprocessing functions
+
 <a name="CRXDE"></a>
 ###class: CRXDE
 **Members**
@@ -117,6 +134,7 @@ Expose logging targets
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
   * [cRXDE.pipe(paths, [options])](#CRXDE#pipe)
+  * [cRXDE.preproc(path)](#CRXDE#preproc)
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
@@ -145,6 +163,14 @@ Syncs files from source code to CQ (CRXDE)
 - \[options\] `Object` - Watching options  
 
 **Returns**: [CRXDE](#CRXDE)  
+<a name="CRXDE#preproc"></a>
+####cRXDE.preproc(path)
+Runs preprocessing
+
+**Params**
+
+- path `string` - Path to file in file system  
+
 <a name="CRXDE#add"></a>
 ####cRXDE.add(path, type)
 Uploads a new file to CQ (CRXDE)
@@ -174,4 +200,21 @@ Removes a file from CQ (CRXDE)
 - path `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
+<a name="isFileCanBePreproc"></a>
+###isFileCanBePreproc(path)
+Checks if file could be preprocessed
+
+**Params**
+
+- path `string` - Path to file in file system  
+
+**Returns**: `boolean`  
+<a name="cssPreproc"></a>
+###cssPreproc(path)
+Runs preprocessing
+
+**Params**
+
+- path `string` - Path to file in file system  
+
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
