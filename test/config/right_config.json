@@ -1,0 +1,11 @@
+{
+  "MATCH_ROOT":       "c://",
+  "INTERVAL":         100,
+  "ENABLE_PREPROC":   false,
+  "IGNORE":           ".git",
+  "HOSTNAME":         "http://ya.ru",
+  "PORT":             "8085",
+  "LOGIN":            "admin123",
+  "PASSWORD":         "1234",
+  "CSS_PREPROC_MAP":  ".preproc_config123"
+}

@@ -1,0 +1,12 @@
+{
+  "MATCH_ROOT":       "asdasd://",
+  "INTERVAL":         "asdkjasd",
+  "ENABLE_PREPROC":   123,
+  "IGNORE":           ".giasdasdt",
+  "HOSTNAME":         "",
+  "PORT":             "asd",
+  "LOGIN":            "a",
+  "PASSWORD":         "asdsa&^",
+  "CSS_PREPROC_MAP":  ".preproc_config123"
+}
+
