@@ -7,7 +7,7 @@ Install `crxde-pipe` from sources:
 $ git clone https://github.com/fortywinkz/crxde-pipe.git
 $ cd crxde-pipe
 $ npm install
-$ nmp link
+$ npm link
 ```
 
 Run:
@@ -41,6 +41,7 @@ Options:
 ```
 
 ## API
+
 
 ###Index
 
@@ -221,4 +222,6 @@ Removes a file from CQ (CRXDE)
 - path `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
-*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
+
+
+*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
