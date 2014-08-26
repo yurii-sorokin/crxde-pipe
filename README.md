@@ -27,7 +27,7 @@ _For more information see [docs](#module_logger) and [debug](https://github.com/
 
 Options:
 ```bash
-crxde-pipe -h                                                                                             [15:54:04]
+crxde-pipe -h
 
 Usage: crxde-pipe [options] [dir]
 
