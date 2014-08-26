@@ -1,26 +1,18 @@
 #!/usr/bin/env node
+'use strict';
 
-var program = require('commander');
-var pkg = require('../package.json');
-var crxdePipe = require('../');
-
-var paths = [ process.cwd() ];
-var options = {};
-
-var parseRegex = function(str) {
-  return new RegExp(str);
-};
+var program = require('commander'),
+    pkg = require('../package.json'),
+    crxdePipe = require('../'),
+    paths = [ process.cwd() ],
+    options = {},
+    util = require('util');
 
 program
   .description('Pipes source code to CQ (CRXDE)')
   .version(pkg.version)
   .usage('[options] <dir...>')
-  .option('-m, --match [regex]', 'Regex for matching CQ path', parseRegex)
-  .option('-i, --ignore [regex]', 'Regex for excluding files from watching', parseRegex)
-  .option('-I, --interval [ms]', 'Interval of watching', parseInt)
-  .option('-s, --host [name]', 'CQ (CRXDE) host')
-  .option('-p, --port [number]', 'CQ (CRXDE) port', parseInt)
-  .option('-P, --preprocess', 'Enables preprocessors')
+  .option('-c, --config [path]', 'Path to configuration file')
   .parse(process.argv);
 
 if (program.args.length) {
@@ -28,12 +20,12 @@ if (program.args.length) {
 }
 
 program.options.forEach(function(option) {
-  var key = option.name();
-  var val = program[key];
+  var key = option.name(),
+      val = program[key];
 
   if (val != null && key !== 'version') {
     options[key] = program[key];
   }
 });
 
-crxdePipe.pipe(paths, options);
+crxdePipe.pipe(paths, options.config);
