@@ -29,15 +29,18 @@ Options:
 ```bash
 crxde-pipe -h
 
-Usage: crxde-pipe [options] [dir]
+    Usage: crxde-pipe [options] <dir...>
 
-Options:
+    Options:
 
--h, --help            output usage information
--V, --version         output the version number
--m, --match [regex]   Regex for matching CQ path
--i, --ignore [regex]  Regex for excluding files from watching
--I, --interval [ms]   Interval of watching
+    -h, --help                    output usage information
+    -V, --version                 output the version number
+    -m, --match [regex]           Regex for matching CQ path
+    -i, --ignore [regex]          Regex for excluding files from watching
+    -I, --interval [ms]           Interval of watching
+    -s, --server [host:port]      CQ (CRXDE) server
+    -d, --dispatcher [host:port]  Dispatcher server
+    -P, --preprocess              Enables preprocessors
 ```
 
 ## API

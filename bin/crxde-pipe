@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+var fs = require('fs');
 var program = require('commander');
 var pkg = require('../package.json');
 var crxdePipe = require('../');
@@ -11,6 +11,20 @@ var parseRegex = function(str) {
   return new RegExp(str);
 };
 
+var parseServer = function(srt) {
+  var server = {};
+  var parts = (srt || '').split(':');
+  var keys = ['host', 'port'];
+  parts.forEach(function(val, i) {
+    var key = keys[i];
+    if (val) {
+      server[key] = val;
+    }
+  });
+
+  return server;
+};
+
 program
   .description('Pipes source code to CQ (CRXDE)')
   .version(pkg.version)
@@ -18,13 +32,16 @@ program
   .option('-m, --match [regex]', 'Regex for matching CQ path', parseRegex)
   .option('-i, --ignore [regex]', 'Regex for excluding files from watching', parseRegex)
   .option('-I, --interval [ms]', 'Interval of watching', parseInt)
-  .option('-s, --host [name]', 'CQ (CRXDE) host')
-  .option('-p, --port [number]', 'CQ (CRXDE) port', parseInt)
+  .option('-s, --server [host:port]', 'CQ (CRXDE) server', parseServer)
+  .option('-d, --dispatcher [host:port]', 'Dispatcher server', parseServer)
   .option('-P, --preprocess', 'Enables preprocessors')
   .parse(process.argv);
 
 if (program.args.length) {
   paths = program.args;
+  paths.filter(function (path) {
+    return fs.existsSync(path);
+  });
 }
 
 program.options.forEach(function(option) {

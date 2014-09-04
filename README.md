@@ -29,15 +29,18 @@ Options:
 ```bash
 crxde-pipe -h
 
-Usage: crxde-pipe [options] [dir]
+    Usage: crxde-pipe [options] <dir...>
 
-Options:
+    Options:
 
--h, --help            output usage information
--V, --version         output the version number
--m, --match [regex]   Regex for matching CQ path
--i, --ignore [regex]  Regex for excluding files from watching
--I, --interval [ms]   Interval of watching
+    -h, --help                    output usage information
+    -V, --version                 output the version number
+    -m, --match [regex]           Regex for matching CQ path
+    -i, --ignore [regex]          Regex for excluding files from watching
+    -I, --interval [ms]           Interval of watching
+    -s, --server [host:port]      CQ (CRXDE) server
+    -d, --dispatcher [host:port]  Dispatcher server
+    -P, --preprocess              Enables preprocessors
 ```
 
 ## API
@@ -69,6 +72,11 @@ Options:
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
+  * [cRXDE.flush([path])](#CRXDE#flush)
+
+**Typedefs**
+
+* [type: Server](#Server)
  
 <a name="module_crxde-pipe"></a>
 ###crxde-pipe
@@ -160,6 +168,7 @@ Runs preprocessing
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
+  * [cRXDE.flush([path])](#CRXDE#flush)
 
 <a name="new_CRXDE"></a>
 ####new CRXDE([options])
@@ -171,8 +180,8 @@ Provides piping of source code to CQ (CRXDE)
   - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
   - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb__bak___|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN/`  
   - interval `number` - Watching interval. Default: `500`  
-  - host `string` - Hostname of CRXDE instance. Default: `localhost`  
-  - port `number` - Port of CRXDE instance. Default: `4502`  
+  - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ host: 'localhost': port: 4502 }`  
+  - dispatcher <code>[Server](#Server)</code> - Server of dispatcher instance. Needed for flushing a cache. Default: false  
   - auth `string` - Authentication data for CRXDE instance. Default: `admin:admin`  
 
 <a name="CRXDE#pipe"></a>
@@ -222,6 +231,18 @@ Removes a file from CQ (CRXDE)
 - path `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
+<a name="CRXDE#flush"></a>
+####cRXDE.flush([path])
+Flushes cache on CQ (CRXDE)
+
+**Params**
+
+- \[path\] `string` - Path to file (relative to root)  
+
+**Returns**: [CRXDE](#CRXDE)  
+<a name="Server"></a>
+###type: Server
+**Type**: `Object`  
 
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
