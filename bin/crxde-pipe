@@ -34,14 +34,16 @@ program
   .option('-I, --interval [ms]', 'Interval of watching', parseInt)
   .option('-s, --server [host:port]', 'CQ (CRXDE) server', parseServer)
   .option('-d, --dispatcher [host:port]', 'Dispatcher server', parseServer)
-  .option('-P, --preprocess', 'Enables preprocessors')
   .parse(process.argv);
 
 if (program.args.length) {
-  paths = program.args;
-  paths.filter(function (path) {
+  paths = program.args.filter(function (path) {
     return fs.existsSync(path);
   });
+
+  if (!paths.length) {
+    throw new Error('None of specified paths is valid.');
+  }
 }
 
 program.options.forEach(function(option) {

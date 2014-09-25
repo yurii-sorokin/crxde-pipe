@@ -10,24 +10,39 @@ $ npm install
 $ npm link
 ```
 
+or from npm:
+```sh
+$ npm install crxde-pipe -g
+```
+
+Also it is available as bower package:
+```sh
+$ bower install crxde-pipe
+```
+
 Run:
 ```bash
-crxde-pipe path/to/project/src
+$ crxde-pipe path/to/project/src
 ```
 
 Enable debugging:
 ```bash
-DEBUG=* crxde-pipe path/to/project/src
+$ DEBUG=* crxde-pipe path/to/project/src
 ```
+or for windows users:
+```shell
+cmd /C "set DEBUG=* && crxde-pipe path/to/project/src"
+```
+
 Also you can specify debugging target:
 ```bash
-DEBUG=app:error crxde-pipe path/to/project/src
+$ DEBUG=app:error crxde-pipe path/to/project/src
 ```
 _For more information see [docs](#module_logger) and [debug](https://github.com/visionmedia/debug) project_
 
 Options:
 ```bash
-crxde-pipe -h
+$ crxde-pipe -h
 
     Usage: crxde-pipe [options] <dir...>
 
@@ -55,20 +70,15 @@ crxde-pipe -h
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
   * [logger.error](#module_logger.error)
-  * [logger.preproc](#module_logger.preproc)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
   * [logger.remove](#module_logger.remove)
-* [preproc](#module_preproc)
-  * [preproc.isFileCanBePreproc](#module_preproc.isFileCanBePreproc)
-  * [preproc.preproc](#module_preproc.preproc)
 
 **Classes**
 
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
-  * [cRXDE.pipe(paths, [options])](#CRXDE#pipe)
-  * [cRXDE.preproc(path)](#CRXDE#preproc)
+  * [cRXDE.pipe(paths)](#CRXDE#pipe)
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
@@ -101,7 +111,6 @@ Expose logging targets
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
   * [logger.error](#module_logger.error)
-  * [logger.preproc](#module_logger.preproc)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
   * [logger.remove](#module_logger.remove)
@@ -113,10 +122,6 @@ Expose logging targets
 <a name="module_logger.error"></a>
 ####logger.error
 `app:error` Target for logging errors
-
-<a name="module_logger.preproc"></a>
-####logger.preproc
-`app:preproc` Target for logging preprocessing
 
 <a name="module_logger.update"></a>
 ####logger.update
@@ -130,41 +135,13 @@ Expose logging targets
 ####logger.remove
 `crxde:remove` Target for logging removal of file from CQ (CRXDE)
 
-<a name="module_preproc"></a>
-###preproc
-Expose preprocessing functions
-
-**Members**
-
-* [preproc](#module_preproc)
-  * [preproc.isFileCanBePreproc](#module_preproc.isFileCanBePreproc)
-  * [preproc.preproc](#module_preproc.preproc)
-
-<a name="module_preproc.isFileCanBePreproc"></a>
-####preproc.isFileCanBePreproc
-Checks if file could be preprocessed
-
-**Params**
-
-- path `string` - Path to file in file system  
-
-**Returns**: `boolean`  
-<a name="module_preproc.preproc"></a>
-####preproc.preproc
-Runs preprocessing
-
-**Params**
-
-- path `string` - Path to file in file system  
-
 <a name="CRXDE"></a>
 ###class: CRXDE
 **Members**
 
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
-  * [cRXDE.pipe(paths, [options])](#CRXDE#pipe)
-  * [cRXDE.preproc(path)](#CRXDE#preproc)
+  * [cRXDE.pipe(paths)](#CRXDE#pipe)
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
@@ -178,30 +155,21 @@ Provides piping of source code to CQ (CRXDE)
 
 - \[options\] `Object` - Watching options  
   - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
-  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb__bak___|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN/`  
+  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb__bak___|___jb_bak___|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml/`  
   - interval `number` - Watching interval. Default: `500`  
   - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ host: 'localhost': port: 4502 }`  
   - dispatcher <code>[Server](#Server)</code> - Server of dispatcher instance. Needed for flushing a cache. Default: false  
   - auth `string` - Authentication data for CRXDE instance. Default: `admin:admin`  
 
 <a name="CRXDE#pipe"></a>
-####cRXDE.pipe(paths, [options])
+####cRXDE.pipe(paths)
 Syncs files from source code to CQ (CRXDE)
 
 **Params**
 
 - paths `Array` - Watching paths  
-- \[options\] `Object` - Watching options  
 
 **Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#preproc"></a>
-####cRXDE.preproc(path)
-Runs preprocessing
-
-**Params**
-
-- path `string` - Path to file in file system  
-
 <a name="CRXDE#add"></a>
 ####cRXDE.add(path, type)
 Uploads a new file to CQ (CRXDE)

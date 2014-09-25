@@ -10,24 +10,39 @@ $ npm install
 $ npm link
 ```
 
+or from npm:
+```sh
+$ npm install crxde-pipe -g
+```
+
+Also it is available as bower package:
+```sh
+$ bower install crxde-pipe
+```
+
 Run:
 ```bash
-crxde-pipe path/to/project/src
+$ crxde-pipe path/to/project/src
 ```
 
 Enable debugging:
 ```bash
-DEBUG=* crxde-pipe path/to/project/src
+$ DEBUG=* crxde-pipe path/to/project/src
 ```
+or for windows users:
+```shell
+cmd /C "set DEBUG=* && crxde-pipe path/to/project/src"
+```
+
 Also you can specify debugging target:
 ```bash
-DEBUG=app:error crxde-pipe path/to/project/src
+$ DEBUG=app:error crxde-pipe path/to/project/src
 ```
 _For more information see [docs](#module_logger) and [debug](https://github.com/visionmedia/debug) project_
 
 Options:
 ```bash
-crxde-pipe -h
+$ crxde-pipe -h
 
     Usage: crxde-pipe [options] <dir...>
 
