@@ -116,11 +116,11 @@ Expose logging targets
 
 <a name="module_logger.log"></a>
 ####logger.log
-`app:log` Target for base logging
+`crxde:log` Target for base logging
 
 <a name="module_logger.error"></a>
 ####logger.error
-`app:error` Target for logging errors
+`crxde:error` Target for logging errors
 
 <a name="module_logger.update"></a>
 ####logger.update
