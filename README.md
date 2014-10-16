@@ -50,12 +50,11 @@ $ crxde-pipe -h
 
     -h, --help                    output usage information
     -V, --version                 output the version number
-    -m, --match [regex]           Regex for matching CQ path
-    -i, --ignore [regex]          Regex for excluding files from watching
-    -I, --interval [ms]           Interval of watching
-    -s, --server [host:port]      CQ (CRXDE) server
-    -d, --dispatcher [host:port]  Dispatcher server
-    -P, --preprocess              Enables preprocessors
+    -m, --match [regex]           pattern matching CRX root under your files
+    -i, --ignore [regex]          pattern used to exclude files from the watch
+    -I, --interval [ms]           indicate how often file system should be polled
+    -s, --server [host:port]      locate where CRX repository is running
+    -d, --dispatcher [host:port]  locate where Dispatcher is running
 ```
 
 ## API
@@ -210,6 +209,11 @@ Flushes cache on CQ (CRXDE)
 **Returns**: [CRXDE](#CRXDE)  
 <a name="Server"></a>
 ###type: Server
+**Properties**
+
+- host `string` - Hostname of server  
+- port `number` - Port of server  
+
 **Type**: `Object`  
 
 

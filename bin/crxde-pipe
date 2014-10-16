@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+
 var fs = require('fs');
 var program = require('commander');
 var pkg = require('../package.json');
-var crxdePipe = require('../');
 
 var paths = [ process.cwd() ];
 var options = {};
@@ -26,14 +26,13 @@ var parseServer = function(srt) {
 };
 
 program
-  .description('Pipes source code to CQ (CRXDE)')
   .version(pkg.version)
   .usage('[options] <dir...>')
-  .option('-m, --match [regex]', 'Regex for matching CQ path', parseRegex)
-  .option('-i, --ignore [regex]', 'Regex for excluding files from watching', parseRegex)
-  .option('-I, --interval [ms]', 'Interval of watching', parseInt)
-  .option('-s, --server [host:port]', 'CQ (CRXDE) server', parseServer)
-  .option('-d, --dispatcher [host:port]', 'Dispatcher server', parseServer)
+  .option('-m, --match [regex]', 'pattern matching CRX root under your files', parseRegex)
+  .option('-i, --ignore [regex]', 'pattern used to exclude files from the watch', parseRegex)
+  .option('-I, --interval [ms]', 'indicate how often file system should be polled', parseInt)
+  .option('-s, --server [host:port]', 'locate where CRX repository is running', parseServer)
+  .option('-d, --dispatcher [host:port]', 'locate where Dispatcher is running', parseServer)
   .parse(process.argv);
 
 if (program.args.length) {
@@ -55,4 +54,4 @@ program.options.forEach(function(option) {
   }
 });
 
-crxdePipe.pipe(paths, options);
+require('../').pipe(paths, options);
