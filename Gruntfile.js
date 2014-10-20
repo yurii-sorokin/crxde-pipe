@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: pkg,
     watch: {
+      file: [ 'Gruntfile.js' ]
     },
     jsdoc2md: {
       lib: {

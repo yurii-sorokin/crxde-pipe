@@ -11,28 +11,25 @@ var parseRegex = function(str) {
   return new RegExp(str);
 };
 
-var parseServer = function(srt) {
-  var server = {};
-  var parts = (srt || '').split(':');
-  var keys = ['host', 'port'];
-  parts.forEach(function(val, i) {
-    var key = keys[i];
-    if (val) {
-      server[key] = val;
-    }
-  });
+var parseServer = function(str) {
+  var rServer = /^(?:(https?):\/\/)?([^:]*)(?::(\d+))?$/;
+  var matches = ((str || '').match(rServer) || []).slice(1);
 
-  return server;
+  return {
+    protocol: matches[0],
+    hostname: matches[1],
+    port: matches[2]
+  };
 };
 
 program
   .version(pkg.version)
   .usage('[options] <dir...>')
-  .option('-m, --match [regex]', 'pattern matching CRX root under your files', parseRegex)
-  .option('-i, --ignore [regex]', 'pattern used to exclude files from the watch', parseRegex)
-  .option('-I, --interval [ms]', 'indicate how often file system should be polled', parseInt)
-  .option('-s, --server [host:port]', 'locate where CRX repository is running', parseServer)
-  .option('-d, --dispatcher [host:port]', 'locate where Dispatcher is running', parseServer)
+  .option('-m, --match <regex>', 'pattern matching CRX root under your files', parseRegex)
+  .option('-i, --ignore <regex>', 'pattern used to exclude files from the watch', parseRegex)
+  .option('-I, --interval <ms>', 'indicate how often file system should be polled', parseInt)
+  .option('-s, --server <host:port>', 'locate where CRX repository is running', parseServer)
+  .option('-u, --user [user]', 'authentication data used to access CRX repository')
   .parse(process.argv);
 
 if (program.args.length) {
@@ -49,9 +46,37 @@ program.options.forEach(function(option) {
   var key = option.name();
   var val = program[key];
 
-  if (val != null && key !== 'version') {
+  if (val != null && [ 'user', 'version' ].indexOf(key) === -1 ) {
     options[key] = program[key];
   }
 });
 
-require('../').pipe(paths, options);
+if (program.user) {
+  (function() {
+    var prompt = require('prompt');
+    var promptData = [{ name: 'pass', description: 'Password:', hidden: true }];
+
+    prompt.message = '# ';
+    prompt.delimiter = '';
+
+    if (typeof program.user !== 'string') {
+      promptData.unshift({ name: 'user', default: 'admin', description: 'Username:' });
+      options.auth = {};
+    } else {
+      options.auth = { user: program.user };
+    }
+
+    prompt.start();
+    prompt.addProperties(options.auth, promptData, function (err) {
+      if (!err) {
+        require('../').pipe(paths, options);
+      }
+    });
+  })();
+} else {
+  require('../').pipe(paths, options);
+}
+
+
+
+

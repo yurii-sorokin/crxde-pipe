@@ -13,10 +13,11 @@
     "crxde-pipe": "./bin/crxde-pipe"
   },
   "dependencies": {
-    "commander": "^2.2.0",
+    "commander": "^2.4.0",
     "debug": "^2.1.0",
-    "form-data": "^0.1.2",
     "html-to-text": "^0.1.0",
+    "prompt": "^0.2.14",
+    "request": "^2.45.0",
     "watchr": "^2.4.11"
   },
   "devDependencies": {

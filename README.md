@@ -81,7 +81,6 @@ $ crxde-pipe -h
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
-  * [cRXDE.flush([path])](#CRXDE#flush)
 
 **Typedefs**
 
@@ -144,7 +143,6 @@ Expose logging targets
   * [cRXDE.add(path, type)](#CRXDE#add)
   * [cRXDE.update(path, resource)](#CRXDE#update)
   * [cRXDE.remove(path)](#CRXDE#remove)
-  * [cRXDE.flush([path])](#CRXDE#flush)
 
 <a name="new_CRXDE"></a>
 ####new CRXDE([options])
@@ -154,11 +152,10 @@ Provides piping of source code to CQ (CRXDE)
 
 - \[options\] `Object` - Watching options  
   - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
-  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb__bak___|___jb_bak___|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml/`  
+  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb_.*___$|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml/`  
   - interval `number` - Watching interval. Default: `500`  
-  - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ host: 'localhost': port: 4502 }`  
-  - dispatcher <code>[Server](#Server)</code> - Server of dispatcher instance. Needed for flushing a cache. Default: false  
-  - auth `string` - Authentication data for CRXDE instance. Default: `admin:admin`  
+  - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }`  
+  - auth `Object` - Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }`  
 
 <a name="CRXDE#pipe"></a>
 ####cRXDE.pipe(paths)
@@ -198,21 +195,13 @@ Removes a file from CQ (CRXDE)
 - path `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#flush"></a>
-####cRXDE.flush([path])
-Flushes cache on CQ (CRXDE)
-
-**Params**
-
-- \[path\] `string` - Path to file (relative to root)  
-
-**Returns**: [CRXDE](#CRXDE)  
 <a name="Server"></a>
 ###type: Server
 **Properties**
 
-- host `string` - Hostname of server  
-- port `number` - Port of server  
+- protocol `string` - Server protocol  
+- hostname `string` - Hostname portion of server host  
+- port `number` - Port number portion of server host  
 
 **Type**: `Object`  
 
