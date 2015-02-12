@@ -152,7 +152,7 @@ Provides piping of source code to CQ (CRXDE)
 
 - \[options\] `Object` - Watching options  
   - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
-  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb_.*___$|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml/`  
+  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb.*___$|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml/`  
   - interval `number` - Watching interval. Default: `500`  
   - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }`  
   - auth `Object` - Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }`  
