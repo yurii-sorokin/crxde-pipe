@@ -12,13 +12,13 @@ var parseRegex = function(str) {
 };
 
 var parseServer = function(str) {
-  var rServer = /^(?:(https?):\/\/)?([^:]*)(?::(\d+))?$/;
-  var matches = ((str || '').match(rServer) || []).slice(1);
+  var rServer = /^(?:(https?):\/\/)?([^:]+)?(?::(\d+))?$/;
+  var matches = ((str || '').match(rServer) || []);
 
   return {
-    protocol: matches[0],
-    hostname: matches[1],
-    port: matches[2]
+    protocol: matches[1],
+    hostname: matches[2],
+    port: matches[3]
   };
 };
 
