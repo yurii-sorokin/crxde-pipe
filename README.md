@@ -77,10 +77,11 @@ $ crxde-pipe -h
 
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
-  * [cRXDE.pipe(paths)](#CRXDE#pipe)
-  * [cRXDE.add(path, type)](#CRXDE#add)
-  * [cRXDE.update(path, resource)](#CRXDE#update)
-  * [cRXDE.remove(path)](#CRXDE#remove)
+  * [~~crxdE.update~~](#CRXDE#update)
+  * [crxdE.pipe(paths)](#CRXDE#pipe)
+  * [crxdE.add(jcrUrl, type)](#CRXDE#add)
+  * [crxdE.upload(jcrUrl, resource)](#CRXDE#upload)
+  * [crxdE.remove(jcrUrl)](#CRXDE#remove)
 
 **Typedefs**
 
@@ -139,10 +140,11 @@ Expose logging targets
 
 * [class: CRXDE](#CRXDE)
   * [new CRXDE([options])](#new_CRXDE)
-  * [cRXDE.pipe(paths)](#CRXDE#pipe)
-  * [cRXDE.add(path, type)](#CRXDE#add)
-  * [cRXDE.update(path, resource)](#CRXDE#update)
-  * [cRXDE.remove(path)](#CRXDE#remove)
+  * [~~crxdE.update~~](#CRXDE#update)
+  * [crxdE.pipe(paths)](#CRXDE#pipe)
+  * [crxdE.add(jcrUrl, type)](#CRXDE#add)
+  * [crxdE.upload(jcrUrl, resource)](#CRXDE#upload)
+  * [crxdE.remove(jcrUrl)](#CRXDE#remove)
 
 <a name="new_CRXDE"></a>
 ####new CRXDE([options])
@@ -157,8 +159,19 @@ Provides piping of source code to CQ (CRXDE)
   - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }`  
   - auth `Object` - Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }`  
 
+<a name="CRXDE#update"></a>
+####~~crxdE.update~~
+Updates a file on CQ (CRXDE)
+
+**Params**
+
+- jcrUrl `string` - Path to file (relative to root)  
+- resource `string` - Path to file in file system  
+
+***Deprecated***  
+**Returns**: [CRXDE](#CRXDE)  
 <a name="CRXDE#pipe"></a>
-####cRXDE.pipe(paths)
+####crxdE.pipe(paths)
 Syncs files from source code to CQ (CRXDE)
 
 **Params**
@@ -167,32 +180,32 @@ Syncs files from source code to CQ (CRXDE)
 
 **Returns**: [CRXDE](#CRXDE)  
 <a name="CRXDE#add"></a>
-####cRXDE.add(path, type)
-Uploads a new file to CQ (CRXDE)
+####crxdE.add(jcrUrl, type)
+Creates a new node in CQ (CRXDE)
 
 **Params**
 
-- path `string` - Path to file (relative to root)  
+- jcrUrl `string` - Path to file (relative to root)  
 - type `string` - Type of file (nt:file, nt:folder, etc.)  
 
 **Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#update"></a>
-####cRXDE.update(path, resource)
-Updates a file on CQ (CRXDE)
+<a name="CRXDE#upload"></a>
+####crxdE.upload(jcrUrl, resource)
+Uploads a file on CQ (CRXDE)
 
 **Params**
 
-- path `string` - Path to file (relative to root)  
+- jcrUrl `string` - Path to file (relative to root)  
 - resource `string` - Path to file in file system  
 
 **Returns**: [CRXDE](#CRXDE)  
 <a name="CRXDE#remove"></a>
-####cRXDE.remove(path)
+####crxdE.remove(jcrUrl)
 Removes a file from CQ (CRXDE)
 
 **Params**
 
-- path `string` - Path to file (relative to root)  
+- jcrUrl `string` - Path to file (relative to root)  
 
 **Returns**: [CRXDE](#CRXDE)  
 <a name="Server"></a>
