@@ -13,12 +13,12 @@
     "crxde-pipe": "./bin/crxde-pipe"
   },
   "dependencies": {
+    "chokidar": "^1.0.1",
     "commander": "^2.4.0",
     "debug": "^2.1.0",
     "html-to-text": "^0.1.0",
     "prompt": "^0.2.14",
-    "request": "^2.45.0",
-    "watchr": "^2.4.11"
+    "request": "^2.45.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
