@@ -1,7 +1,7 @@
 {
   "name": "crxde-pipe",
   "description": "Simple tool for piping local changes to CQ (CRXDE)",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/fortywinkz/crxde-pipe",
   "keywords": [
     "cq",
