@@ -68,6 +68,7 @@ $ crxde-pipe -h
   * [crxde-pipe.pipe(paths, options)](#module_crxde-pipe.pipe)
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
+  * [logger.debug](#module_logger.debug)
   * [logger.error](#module_logger.error)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
@@ -109,6 +110,7 @@ Expose logging targets
 
 * [logger](#module_logger)
   * [logger.log](#module_logger.log)
+  * [logger.debug](#module_logger.debug)
   * [logger.error](#module_logger.error)
   * [logger.update](#module_logger.update)
   * [logger.create](#module_logger.create)
@@ -116,11 +118,15 @@ Expose logging targets
 
 <a name="module_logger.log"></a>
 ####logger.log
-`crxde:log` Target for base logging
+`app:log` Target for base logging
+
+<a name="module_logger.debug"></a>
+####logger.debug
+`app:debug` Target for debugging
 
 <a name="module_logger.error"></a>
 ####logger.error
-`crxde:error` Target for logging errors
+`app:error` Target for logging errors
 
 <a name="module_logger.update"></a>
 ####logger.update
@@ -154,7 +160,7 @@ Provides piping of source code to CQ (CRXDE)
 
 - \[options\] `Object` - Watching options  
   - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
-  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb.*___$|Thumbs.db$|ehthumbs.db$|Desktop.ini$|\$RECYCLE.BIN|\.content.xml|node_modules/`  
+  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb.*___$|Thumbs\.db$|ehthumbs\.db$|Desktop.ini$|\$RECYCLE.BIN|\.xml|node_modules/`  
   - interval `number` - Watching interval. Default: `500`  
   - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }`  
   - auth `Object` - Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }`  
