@@ -2,6 +2,7 @@
 
 module.exports = function(grunt) {
 
+  var fs = require('fs');
   var pkg = require('./package.json');
 
   // Project configuration.
@@ -13,10 +14,10 @@ module.exports = function(grunt) {
     jsdoc2md: {
       lib: {
         options: {
-          template: 'README.tl.hbs'
+          template: fs.readFileSync('README.tl.hbs').toString('utf-8')
         },
-        src: "lib/*.js",
-        dest: "README.md"
+        src: 'lib/*.js',
+        dest: 'README.md'
       }
     }
   });

@@ -59,170 +59,181 @@ $ crxde-pipe -h
 
 ## API
 
+### Modules
 
-###Index
+<dl>
+<dt><a href="#module_crxde-pipe">crxde-pipe</a></dt>
+<dd><p>Expose a single function to pipe source files to CQ (CRXDE)</p>
+</dd>
+<dt><a href="#module_logger">logger</a></dt>
+<dd><p>Expose logging targets</p>
+</dd>
+</dl>
 
-**Modules**
+### Classes
 
-* [crxde-pipe](#module_crxde-pipe)
-  * [crxde-pipe.pipe(paths, options)](#module_crxde-pipe.pipe)
-* [logger](#module_logger)
-  * [logger.log](#module_logger.log)
-  * [logger.debug](#module_logger.debug)
-  * [logger.error](#module_logger.error)
-  * [logger.update](#module_logger.update)
-  * [logger.create](#module_logger.create)
-  * [logger.remove](#module_logger.remove)
+<dl>
+<dt><a href="#CRXDE">CRXDE</a></dt>
+<dd></dd>
+</dl>
 
-**Classes**
+### Typedefs
 
-* [class: CRXDE](#CRXDE)
-  * [new CRXDE([options])](#new_CRXDE)
-  * [~~crxdE.update~~](#CRXDE#update)
-  * [crxdE.pipe(paths)](#CRXDE#pipe)
-  * [crxdE.add(jcrUrl, type)](#CRXDE#add)
-  * [crxdE.upload(jcrUrl, resource)](#CRXDE#upload)
-  * [crxdE.remove(jcrUrl)](#CRXDE#remove)
+<dl>
+<dt><a href="#Server">Server</a> : <code>Object</code></dt>
+<dd></dd>
+</dl>
 
-**Typedefs**
-
-* [type: Server](#Server)
- 
 <a name="module_crxde-pipe"></a>
-###crxde-pipe
+### crxde-pipe
 Expose a single function to pipe source files to CQ (CRXDE)
 
 <a name="module_crxde-pipe.pipe"></a>
-####crxde-pipe.pipe(paths, options)
+#### crxde-pipe.pipe(paths, options) ⇒ <code>[CRXDE](#CRXDE)</code>
 Pipe source files to CQ (CRXDE)
 
-**Params**
+**Kind**: static method of <code>[crxde-pipe](#module_crxde-pipe)</code>  
 
-- paths `Array`  
-- options `Object`  
+| Param | Type |
+| --- | --- |
+| paths | <code>Array</code> | 
+| options | <code>Object</code> | 
 
-**Returns**: [CRXDE](#CRXDE)  
 <a name="module_logger"></a>
-###logger
+### logger
 Expose logging targets
 
-**Members**
 
 * [logger](#module_logger)
-  * [logger.log](#module_logger.log)
-  * [logger.debug](#module_logger.debug)
-  * [logger.error](#module_logger.error)
-  * [logger.update](#module_logger.update)
-  * [logger.create](#module_logger.create)
-  * [logger.remove](#module_logger.remove)
+    * [.log](#module_logger.log)
+    * [.debug](#module_logger.debug)
+    * [.error](#module_logger.error)
+    * [.update](#module_logger.update)
+    * [.create](#module_logger.create)
+    * [.remove](#module_logger.remove)
 
 <a name="module_logger.log"></a>
-####logger.log
+#### logger.log
 `app:log` Target for base logging
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="module_logger.debug"></a>
-####logger.debug
+#### logger.debug
 `app:debug` Target for debugging
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="module_logger.error"></a>
-####logger.error
+#### logger.error
 `app:error` Target for logging errors
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="module_logger.update"></a>
-####logger.update
+#### logger.update
 `crxde:update` Target for logging updates of file on CQ (CRXDE)
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="module_logger.create"></a>
-####logger.create
+#### logger.create
 `crxde:create` Target for logging uploads of file to CQ (CRXDE)
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="module_logger.remove"></a>
-####logger.remove
+#### logger.remove
 `crxde:remove` Target for logging removal of file from CQ (CRXDE)
 
+**Kind**: static property of <code>[logger](#module_logger)</code>  
 <a name="CRXDE"></a>
-###class: CRXDE
-**Members**
+### CRXDE
+**Kind**: global class  
 
-* [class: CRXDE](#CRXDE)
-  * [new CRXDE([options])](#new_CRXDE)
-  * [~~crxdE.update~~](#CRXDE#update)
-  * [crxdE.pipe(paths)](#CRXDE#pipe)
-  * [crxdE.add(jcrUrl, type)](#CRXDE#add)
-  * [crxdE.upload(jcrUrl, resource)](#CRXDE#upload)
-  * [crxdE.remove(jcrUrl)](#CRXDE#remove)
+* [CRXDE](#CRXDE)
+    * [new CRXDE([options])](#new_CRXDE_new)
+    * ~~[.update](#CRXDE+update) ⇒ <code>[CRXDE](#CRXDE)</code>~~
+    * [.pipe(paths)](#CRXDE+pipe) ⇒ <code>[CRXDE](#CRXDE)</code>
+    * [.add(jcrUrl, type)](#CRXDE+add) ⇒ <code>[CRXDE](#CRXDE)</code>
+    * [.upload(jcrUrl, resource)](#CRXDE+upload) ⇒ <code>[CRXDE](#CRXDE)</code>
+    * [.remove(jcrUrl)](#CRXDE+remove) ⇒ <code>[CRXDE](#CRXDE)</code>
 
-<a name="new_CRXDE"></a>
-####new CRXDE([options])
+<a name="new_CRXDE_new"></a>
+#### new CRXDE([options])
 Provides piping of source code to CQ (CRXDE)
 
-**Params**
 
-- \[options\] `Object` - Watching options  
-  - match `RegExp` - Matches root path of CQ files. Default: `/jcr_root(.*)$/`  
-  - ignore `RegExp` - Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb.*___$|Thumbs\.db$|ehthumbs\.db$|Desktop.ini$|\$RECYCLE.BIN|\.xml|node_modules/`  
-  - interval `number` - Watching interval. Default: `500`  
-  - server <code>[Server](#Server)</code> - Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }`  
-  - auth `Object` - Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }`  
+| Param | Type | Description |
+| --- | --- | --- |
+| [options] | <code>Object</code> | Watching options |
+| options.match | <code>RegExp</code> | Matches root path of CQ files. Default: `/jcr_root(.*)$/` |
+| options.ignore | <code>RegExp</code> | Matches files which will be ignored from watching. Default: `/\.git|\.sass-cache|\.hg|\.idea|\.svn|\.cache|\.project|___jb.*___$|Thumbs\.db$|ehthumbs\.db$|Desktop.ini$|\$RECYCLE.BIN|\.xml|node_modules/` |
+| options.interval | <code>number</code> | Watching interval. Default: `500` |
+| options.server | <code>[Server](#Server)</code> | Server of CRXDE instance. Default: `{ protocol: 'http', hostname: 'localhost': port: 4502 }` |
+| options.auth | <code>Object</code> | Authentication data for CRXDE instance. Default: `{ user: 'admin', pass: 'admin' }` |
 
-<a name="CRXDE#update"></a>
-####~~crxdE.update~~
+<a name="CRXDE+update"></a>
+#### ~~crxdE.update ⇒ <code>[CRXDE](#CRXDE)</code>~~
+***Deprecated***
+
 Updates a file on CQ (CRXDE)
 
-**Params**
+**Kind**: instance property of <code>[CRXDE](#CRXDE)</code>  
 
-- jcrUrl `string` - Path to file (relative to root)  
-- resource `string` - Path to file in file system  
+| Param | Type | Description |
+| --- | --- | --- |
+| jcrUrl | <code>string</code> | Path to file (relative to root) |
+| resource | <code>string</code> | Path to file in file system |
 
-***Deprecated***  
-**Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#pipe"></a>
-####crxdE.pipe(paths)
+<a name="CRXDE+pipe"></a>
+#### crxdE.pipe(paths) ⇒ <code>[CRXDE](#CRXDE)</code>
 Syncs files from source code to CQ (CRXDE)
 
-**Params**
+**Kind**: instance method of <code>[CRXDE](#CRXDE)</code>  
 
-- paths `Array` - Watching paths  
+| Param | Type | Description |
+| --- | --- | --- |
+| paths | <code>Array</code> | Watching paths |
 
-**Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#add"></a>
-####crxdE.add(jcrUrl, type)
+<a name="CRXDE+add"></a>
+#### crxdE.add(jcrUrl, type) ⇒ <code>[CRXDE](#CRXDE)</code>
 Creates a new node in CQ (CRXDE)
 
-**Params**
+**Kind**: instance method of <code>[CRXDE](#CRXDE)</code>  
 
-- jcrUrl `string` - Path to file (relative to root)  
-- type `string` - Type of file (nt:file, nt:folder, etc.)  
+| Param | Type | Description |
+| --- | --- | --- |
+| jcrUrl | <code>string</code> | Path to file (relative to root) |
+| type | <code>string</code> | Type of file (nt:file, nt:folder, etc.) |
 
-**Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#upload"></a>
-####crxdE.upload(jcrUrl, resource)
+<a name="CRXDE+upload"></a>
+#### crxdE.upload(jcrUrl, resource) ⇒ <code>[CRXDE](#CRXDE)</code>
 Uploads a file on CQ (CRXDE)
 
-**Params**
+**Kind**: instance method of <code>[CRXDE](#CRXDE)</code>  
 
-- jcrUrl `string` - Path to file (relative to root)  
-- resource `string` - Path to file in file system  
+| Param | Type | Description |
+| --- | --- | --- |
+| jcrUrl | <code>string</code> | Path to file (relative to root) |
+| resource | <code>string</code> | Path to file in file system |
 
-**Returns**: [CRXDE](#CRXDE)  
-<a name="CRXDE#remove"></a>
-####crxdE.remove(jcrUrl)
+<a name="CRXDE+remove"></a>
+#### crxdE.remove(jcrUrl) ⇒ <code>[CRXDE](#CRXDE)</code>
 Removes a file from CQ (CRXDE)
 
-**Params**
+**Kind**: instance method of <code>[CRXDE](#CRXDE)</code>  
 
-- jcrUrl `string` - Path to file (relative to root)  
+| Param | Type | Description |
+| --- | --- | --- |
+| jcrUrl | <code>string</code> | Path to file (relative to root) |
 
-**Returns**: [CRXDE](#CRXDE)  
 <a name="Server"></a>
-###type: Server
+### Server : <code>Object</code>
+**Kind**: global typedef  
+**Link**: http://nodejs.org/api/url.html  
 **Properties**
 
-- protocol `string` - Server protocol  
-- hostname `string` - Hostname portion of server host  
-- port `number` - Port number portion of server host  
-
-**Type**: `Object`  
+| Name | Type | Description |
+| --- | --- | --- |
+| protocol | <code>string</code> | Server protocol |
+| hostname | <code>string</code> | Hostname portion of server host |
+| port | <code>number</code> | Port number portion of server host |
 
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
