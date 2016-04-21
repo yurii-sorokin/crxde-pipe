@@ -1,3 +1,6 @@
+
+> # This project is not maintained anymore. Use [aemsync](https://github.com/gavoja/aemsync) instead.
+
 # crxde-pipe
 
 ## CLI
